@@ -1,0 +1,15 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: media-pod-cleanup
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: media-pod-cleanup
+            image: wernight/kubectl
+            command: ["sh", "-c", "kubectl delete po -n default --selector=job-name=mohsin-testing-ttl --field-selector=status.phase==Succeeded"]
+          restartPolicy: Never
