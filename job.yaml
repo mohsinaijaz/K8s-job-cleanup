@@ -2,7 +2,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: mohsin-testing-ttl
-  namespace: default
 spec:
   template:
     spec:
